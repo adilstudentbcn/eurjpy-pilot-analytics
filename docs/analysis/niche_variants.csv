@@ -1,0 +1,13 @@
+niche,price_eur,uses_simulation,p10_eur,p50_eur,p90_eur,interpretation
+remote_workers,7.99,true,189500,418500,809600,habit-app scenario only
+health_55,7.99,true,150900,344800,675900,habit-app scenario only
+remote_workers,4.99,false,145700,321000,614200,habit-app scenario only
+health_55,4.99,false,126800,280800,537900,habit-app scenario only
+remote_workers,3.99,false,119000,260900,493800,habit-app scenario only
+health_55,3.99,false,112200,247700,476200,habit-app scenario only
+parents,7.99,true,109500,247500,478200,habit-app scenario only
+parents,4.99,false,85800,185400,355300,habit-app scenario only
+parents,3.99,false,66900,146800,279500,habit-app scenario only
+students,7.99,true,58100,128200,247300,habit-app scenario only
+students,4.99,false,44100,96200,182400,habit-app scenario only
+students,3.99,false,32800,72200,137800,habit-app scenario only

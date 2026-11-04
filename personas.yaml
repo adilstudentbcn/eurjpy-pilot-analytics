@@ -1,0 +1,58 @@
+version: 1
+date: 2026-11-02
+geography: Spain/EU default
+personas:
+  - id: part_time_multi_asset
+    label: Part-time multi-asset planner
+    goal: Prepare a defensible session plan before work or family commitments.
+    device: Laptop for research; phone for alerts.
+    time: 20-40 minutes before a session; cannot monitor continuously.
+    knowledge: Intermediate discretionary trader; understands charts and macro headlines but not every asset's catalyst chain.
+    mistakes:
+      - Misses an off-calendar catalyst because only the economic calendar was checked.
+      - Carries a scenario into the session without writing an invalidation condition.
+      - Treats a pasted chart level as current after the market has moved.
+    reason_to_quit: The brief feels generic, slow, or more confident than the supplied evidence.
+    non_cooperative: Asks for a guaranteed entry and refuses to provide the calendar or chart inputs.
+    
+
+  - id: eurjpy_intraday
+    label: EUR/JPY intraday specialist
+    goal: Combine scheduled macro events with JPY-specific intervention and risk-off context.
+    device: Desktop or laptop with broker terminal; phone for news.
+    time: 10-25 minutes before London/Europe overlap and during event windows.
+    knowledge: Advanced forex technical knowledge; uneven macro and intervention knowledge.
+    mistakes:
+      - Reads forecast direction without checking actual-versus-forecast reaction.
+      - Ignores oil, Nikkei, volatility, or official intervention language.
+      - Uses a stop or target that is not tied to a structural invalidation.
+    reason_to_quit: Any fabricated level, stale news, or unexplained signal destroys trust.
+    non_cooperative: Uploads only a chart and demands a trade call while rejecting risk warnings.catalyst 
+
+
+  - id: stock_index_swing
+    label: Stock/index discretionary trader
+    goal: Turn earnings, macro releases, and price action into a scenario for a stock or index.
+    device: Laptop/tablet; phone for watchlist checks.
+    time: 30-60 minutes after market close or before the open.
+    knowledge: Intermediate; stronger on company/index context than FX mechanics.
+    mistakes:
+      - Confuses a company headline with a market-wide catalyst.
+      - Fails to distinguish a gap reaction from a confirmed trend change.
+      - Omits the event that would invalidate the thesis.
+    reason_to_quit: Multi-asset expansion is promised but only EUR/JPY works reliably.
+    non_cooperative: Wants portfolio advice or personalised financial recommendations outside the workflow.
+
+
+  - id: crypto_commodities_monitor
+    label: Volatility and catalyst monitor
+    goal: Detect sudden catalyst risk in crypto, gold, or oil without watching screens all day.
+    device: Phone first; laptop for chart and data review.
+    time: 10-20 minutes several times a day.
+    knowledge: Mixed; understands volatility and narratives but may lack market-structure discipline.
+    mistakes:
+      - Treats social-media narratives as confirmed news.
+      - Uses a single exchange or stale price snapshot.
+      - Sets a target without a volatility-aware invalidation.
+    reason_to_quit: News is stale, sources are not visible, or the output cannot handle rapid regime changes.
+    non_cooperative: Provides rumours or private account data and expects the product to validate them.

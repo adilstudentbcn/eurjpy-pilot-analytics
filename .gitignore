@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+.env
+*.egg-info/
+
+# Local materials to move outside the project
+_move-outside-project/

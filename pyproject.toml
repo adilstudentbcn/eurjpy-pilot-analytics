@@ -1,0 +1,17 @@
+[project]
+name = "pilot-analytics"
+version = "0.1.0"
+description = "Funnel summaries and brief validation for the EUR/JPY trading-brief validation pilot"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff", "pre-commit"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
