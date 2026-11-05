@@ -29,3 +29,10 @@ def validate_brief(brief: dict) -> list[str]:
         violations.append("guarantee_language")
 
     return violations
+
+
+def generate_niche_brief(persona_data: dict) -> str:
+    """Format basic persona data as a concise audience brief."""
+    name = persona_data.get("name", "Unknown Persona")
+    pain_point = persona_data.get("pain_point", "None identified")
+    return f"# Target Audience Brief\n## Persona: {name}\n* Pain Point: {pain_point}\n"

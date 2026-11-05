@@ -72,3 +72,19 @@ def funnel_summary(events: list[dict]) -> dict:
         "missing_fields": missing_fields,
         "date_range": date_range,
     }
+
+
+def calculate_funnel_dropoff(frame) -> dict:
+    """Calculate step-by-step conversion rates from a DataFrame-like object."""
+    results = {}
+    previous_users = None
+    for _, row in frame.iterrows():
+        stage = row["stage"]
+        users = row["users"]
+        if previous_users is None or previous_users == 0:
+            rate = 1.0
+        else:
+            rate = users / previous_users
+        results[stage] = {"users": users, "conversion_rate": rate}
+        previous_users = users
+    return results
