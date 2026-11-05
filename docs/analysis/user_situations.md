@@ -2,27 +2,32 @@
 
 These situations define the first observable workflow. IDs are stable so interview notes, events, and test results can refer to the same behavior.
 
-## US-01 — Select an instrument
+## US-01 — Set up the MT4 workflow and select an instrument
 
-**Given:** a participant opens the pilot landing page.
+**Given:** a participant opens the pilot landing page and chooses a subscription plan.
 
-**When:** they choose EUR/JPY, a stock/index instrument, or a commodities/crypto instrument.
+**When:** they create an account or log in, copy the license key, download the Expert Advisor,
+attach it to MetaTrader 4, and select EUR/JPY, a stock/index instrument, or a commodities/crypto
+instrument on an MT4 chart.
 
-**Then:** the selected instrument and asset category are recorded, and the next step explains the required inputs.
+**Then:** the license and plan are visible in the dashboard, the EA can connect to the server,
+and the selected instrument and asset category are included in the analysis request.
 
 ## US-02 — Submit market inputs
 
 **Given:** an instrument is selected.
 
-**When:** the participant uploads or connects the available calendar, chart, price-data, news, and manual-context inputs.
+**When:** the EA submits the chart and account context: license key, account number, broker server,
+symbol, timeframe, bid/ask, ATR, and chart summary. Calendar and news are fetched server-side.
 
-**Then:** the interface shows which inputs were received, which are missing, and whether the brief can be generated without silently substituting data.
+**Then:** the server validates the license, account binding, quota, and required fields, and
+returns explicit errors instead of silently substituting missing data.
 
 ## US-03 — Receive the decision and risk brief
 
 **Given:** the minimum required inputs are available.
 
-**When:** the participant requests analysis.
+**When:** the participant requests analysis from the EA.
 
 **Then:** the brief identifies the instrument and analysis time, separates evidence from interpretation, presents scenarios, and states invalidation conditions and risk warnings.
 
@@ -30,7 +35,8 @@ These situations define the first observable workflow. IDs are stable so intervi
 
 **Given:** a brief has been generated.
 
-**When:** the participant opens a source, risk, or uncertainty detail.
+**When:** the participant inspects the risk, confidence, grounded status, calendar/news status,
+or dashboard usage after an analysis.
 
 **Then:** the relevant input or source context is visible, missing information is labelled, and no unsupported certainty is added.
 
@@ -38,7 +44,7 @@ These situations define the first observable workflow. IDs are stable so intervi
 
 **Given:** a participant disagrees with or does not understand part of the brief.
 
-**When:** they ask a follow-up question tied to the selected instrument and session.
+**When:** they ask a follow-up question tied to the selected instrument and analysis session.
 
 **Then:** the response remains tied to the supplied evidence, identifies uncertainty where relevant, and does not change the original record without showing what changed.
 
@@ -52,8 +58,9 @@ These situations define the first observable workflow. IDs are stable so intervi
 
 ## Acceptance checklist
 
-- Each situation can be completed on a laptop and a phone-sized screen.
+- The account/dashboard steps can be completed in a browser; the analysis step runs in MetaTrader 4.
 - Empty, incomplete-input, and failed-analysis states are explicit.
 - The selected instrument and analysis time remain visible throughout the result.
 - The result contains evidence context, scenarios, invalidation conditions, and risk warnings.
 - Follow-up questions cannot silently introduce unsupported market facts.
+- The old image/CSV upload prototype is not part of the current workflow.

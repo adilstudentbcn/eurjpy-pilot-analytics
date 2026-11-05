@@ -5,14 +5,15 @@ Date: 2026-11-05
 ## Method
 
 The scenarios were mapped from [user_situations.md](analysis/user_situations.md) and the
-personas in [personas.yaml](../personas.yaml). The live local endpoint was:
+personas in [personas.yaml](../personas.yaml). The live local endpoint used by the MT4 EA was:
 
 `POST http://127.0.0.1/analyze`
 
 All chart values and broker identifiers below were simulated. No participant, personal, or
 broker data was used. The server was already running, and the responses indicate that its
 current AI path is grounded=false; therefore the results are an MVP integration test, not
-validated market advice.
+validated market advice. The direct API runs tested the EA-to-server contract, not the complete
+landing-page, subscription, download, and MT4 display journey.
 
 ## Simulated users
 
@@ -44,9 +45,10 @@ validated market advice.
 
 ## Scenario coverage
 
-- **US-01 Select an instrument:** covered by submitting EURJPY, SPX500, and XAUUSD.
-- **US-02 Submit market inputs:** covered by successful submissions and the 422 incomplete-input
-  check.
+- **US-01 Select an instrument:** partially covered by submitting EURJPY, SPX500, and XAUUSD;
+  the MT4 chart-selection interaction was not observed.
+- **US-02 Submit market inputs:** covered at the EA/API boundary by successful submissions and
+  the 422 incomplete-input check. Image/CSV upload is not part of this workflow.
 - **US-03 Receive decision and risk brief:** covered. Responses included instrument-specific
   signal, confidence, entry/stop/invalidation where applicable, and warnings.
 - **US-04 Inspect uncertainty and hidden risks:** partially covered. The API returns confidence,
@@ -68,3 +70,6 @@ validated market advice.
    richer pilot workflow: source inspection, persistent session context, or follow-up questions.
 4. The account-binding limit can block a new simulated user before analysis. A future user
    simulation harness should provision isolated demo licenses or reuse a documented test account.
+5. A complete visual simulation still needs screenshots and observations for landing, plan choice,
+   login/signup, dashboard/license key, EA download/configuration, MT4 result, and post-analysis
+   usage display.

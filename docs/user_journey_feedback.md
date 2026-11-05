@@ -25,7 +25,7 @@ HTML landing/login/dashboard/checkout-simulation pages.
 | Postgres | SQLite `mvp.db` |
 | Stripe Checkout and signed webhook | Simulated checkout; no production webhook |
 | Gemini or Claude for every run | Local mock when `GEMINI_API_KEY` is absent |
-| Browser user selects an instrument and uploads inputs | `/analyze` accepts MT4-style JSON; no complete browser analysis journey |
+| User selects an instrument and supplies inputs | The MT4 EA sends symbol, timeframe, bid/ask, ATR, and chart summary to `/analyze`; there is no image/CSV upload flow |
 | Persistent brief/session history | Usage is logged, but no user-facing brief session or follow-up thread |
 | Source inspection and challenge/follow-up | Not exposed by the current API |
 | Production rate limiting, monitoring, privacy/legal controls | Not yet implemented |
@@ -42,8 +42,9 @@ the observed integration results; the comments below are simulated reactions to 
 
 ### 1. Part-time multi-asset planner
 
-**Journey:** Opens the site, sees the demo license, supplies a EUR/JPY H1 chart summary, requests
-analysis, receives a BUY result with entry, stop, target, invalidation, confidence, and warnings.
+**Journey:** Opens the landing page, chooses a plan, signs up or logs in, copies the license key
+from the dashboard, downloads the EA, attaches it to an EUR/JPY H1 chart, and receives a BUY
+result with entry, stop, target, invalidation, confidence, and warnings.
 
 **Likely feedback:** “The output is quick and gives me a plan before work. I need the analysis
 time and the actual calendar/news sources beside the result before I can trust it.”
@@ -51,12 +52,12 @@ time and the actual calendar/news sources beside the result before I can trust i
 **Likely action:** Saves the levels for review, but does not act directly from the brief until
 the source context is visible.
 
-**Friction:** The current response is API-shaped and does not provide a guided input checklist or
-an obvious way to inspect what was missing.
+**Friction:** The dashboard confirms the license and quota, but the end-to-end EA installation
+and chart-display experience is not covered by the local API run.
 
 ### 2. EUR/JPY intraday specialist
 
-**Journey:** Sends a tighter M15 EURJPY summary around an event window and receives a NEUTRAL
+**Journey:** Uses an active MT4 EUR/JPY M15 chart around an event window and receives a NEUTRAL
 result with MEDIUM confidence and no levels.
 
 **Likely feedback:** “Neutral is useful, but show me exactly why: calendar event, actual-versus-
@@ -69,7 +70,7 @@ question tied to the same analysis.
 
 ### 3. Stock/index discretionary trader
 
-**Journey:** Reuses the same request shape for SPX500 H4 and receives a BUY result with levels.
+**Journey:** Attaches the EA to an SPX500 H4 chart and receives a BUY result with levels.
 
 **Likely feedback:** “The structure is reusable, but an FX-oriented calendar and prompt may not
 understand earnings, index breadth, or a gap correctly. Show the instrument-specific evidence.”
@@ -82,7 +83,8 @@ instrument-specific quality.
 
 ### 4. Volatility and catalyst monitor
 
-**Journey:** Sends XAUUSD H1 data and receives a NEUTRAL result during consolidation.
+**Journey:** Attaches the EA to an XAUUSD H1 chart and receives a NEUTRAL result during
+consolidation.
 
 **Likely feedback:** “I need the price timestamp, volatility regime, source freshness, and the
 reason for neutral more than a generic headline.”
@@ -110,9 +112,9 @@ needs prominent user-facing treatment.
 license checks, quota, explicit neutral output, invalidation, and risk warnings are coherent.
 
 **Not ready for a realistic user-simulation study of the full product promise.** The current flow
-still lacks the browser screens, step-level evidence display, source inspection, follow-up
-questions, persistent analysis context, and screenshots required for a visual walkthrough.
+still lacks the EA installation/display test, source inspection, follow-up questions, persistent
+analysis context, and screenshots of the dashboard and MT4 result.
 
-The next highest-value test is to add a browser-facing analysis session that visibly shows:
-selected instrument and timestamp, received/missing inputs, source freshness, grounded/mock status,
-scenarios with invalidation and warnings, and a follow-up question with a recorded change.
+The next highest-value test is to run the complete landing-page-to-MT4 journey and visibly show:
+plan and license state, EA configuration, selected instrument and analysis time, source freshness,
+grounded/mock status, scenarios with invalidation and warnings, and dashboard usage after analysis.

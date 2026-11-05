@@ -1,8 +1,9 @@
 # EUR/JPY brief pilot analytics
 
-Small Python package for the validation pilot of a browser trading assistant that turns calendar
-screenshots, a chart and optional price data into an instrument-aware brief with scenarios,
-invalidation conditions and risks.
+Small Python package for the validation pilot of an MT4-connected trading assistant. The current
+MVP uses a thin MetaTrader 4 Expert Advisor that sends user-controlled chart context to a local
+FastAPI service, which returns an instrument-aware brief with scenarios, invalidation conditions,
+and risks.
 
 ## What it does
 - `funnel_summary(events)`: pilot funnel from raw events: unique sessions, conditional rates with visible
@@ -37,11 +38,15 @@ Available scenarios: `complete_activation`, `orphan_delivery`, `missing_evidence
 The prompt-compatibility APIs do not require pandas. `calculate_funnel_dropoff` accepts a
 DataFrame-like object exposing `iterrows()` with `stage` and `users` columns.
 
-The HTML prototype also includes **Research mode: fictional participant**, based on
+The earlier HTML upload prototype includes **Research mode: fictional participant**, based on
 [`personas.yaml`](./personas.yaml), [`user_situations.md`](./docs/analysis/user_situations.md),
 and [`pilot_interview_script.md`](./docs/analysis/pilot_interview_script.md). Select a persona,
 start the six-step task, and use **Next step** to rehearse the workflow. These are synthetic
-usability walkthroughs, not evidence from real users.
+usability walkthroughs, not evidence from real users. It is not the current MT4 workflow.
+
+The current local service is in [`mt4_ai_mvp/`](./mt4_ai_mvp/). Users choose a plan, obtain a
+license key from the subscriber dashboard, download the EA, run it inside MT4, and inspect quota
+and usage there. The image/CSV upload flow is retired.
 
 ## Docs
 specs/001-pilot-analytics/spec.md · docs/adr/ · docs/analysis/ (niche, audience, competitors) · AGENTS.md

@@ -4,9 +4,13 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 .env
+*.env
 *.egg-info/
+*.db
+*.sqlite
+*.sqlite3
+*.ex4
 
 # Local materials to move outside the project
 _move-outside-project/
 PromptsForUserSimulation/
-
